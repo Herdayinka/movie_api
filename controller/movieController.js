@@ -55,16 +55,16 @@ exports.updateMovie = async (req, res) => {
 };
 
 // Delete Movie
-// exports.deleteMovie = async (req, res) => {
-//   try {
-//     const movie = await Movie.findByIdAndDelete(req.params.id);
+exports.deleteMovie = async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndDelete(req.params.id);
 
-//     if (!movie) {
-//       return res.status(404).json({ message: "Movie not found" });
-//     }
+    if (!movie) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
 
-//     res.json({ message: "Movie deleted successfully" });
-//   } catch (err) {
-//     res.status(500).json({ error: "Invalid ID format" });
-//   }
-// };
+    res.json({ message: "Movie deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Invalid ID format" });
+  }
+};

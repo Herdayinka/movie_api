@@ -4,7 +4,7 @@ require("express-async-errors");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
 const movieRoutes = require("./routes/movieRoutes");
 const errorHandler = require("./middleware/errorHandler");
@@ -12,14 +12,13 @@ const errorHandler = require("./middleware/errorHandler");
 const app = express();
 
 // Connect to DB
-
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Database connected");
   })
   .catch((err) => {
-    console.log(error);
+    console.log(err);
   });
 
 // Middlewares
