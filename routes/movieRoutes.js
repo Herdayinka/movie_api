@@ -13,5 +13,7 @@ const router = express.Router();
 router.post("/createMovie", createMovie);
 router.get("/", getMovies);
 router.get("/:id", getMovieById);
+router.put("/:id", updateMovie);
+// router.delete("/:id", deleteMovie);
 
 module.exports = router;

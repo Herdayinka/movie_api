@@ -7,10 +7,7 @@ const morgan = require("morgan");
 const { default: mongoose } = require("mongoose");
 
 const movieRoutes = require("./routes/movieRoutes");
-
-// const connectDB = require("./src/db");
-
-// const errorHandler = require("./src/middlewares/errorHandler");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -34,7 +31,7 @@ app.use(morgan("dev"));
 app.use("/api/movies", movieRoutes);
 
 // Global Error Handler
-// app.use(errorHandler);
+app.use(errorHandler);
 
 // Start Server
 const port = process.env.PORT || 3000;
