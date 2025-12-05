@@ -12,8 +12,11 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
+// Frontend directory
+const frontendDir = path.join(__dirname, "frontend");
+
 // Serve frontend static files
-app.use(express.static(path.join(__dirname, "frontend")));
+app.use(express.static(frontendDir));
 
 // Connect to DB
 const mongoUri = process.env.MONGO_URI || process.env.MONGO_URL;
@@ -44,11 +47,17 @@ app.use(morgan("dev"));
 // Routes
 app.use("/api/movies", movieRoutes);
 
+// SPA fallback: serve index.html for non-API routes (so frontend routing works)
+app.get("*", (req, res, next) => {
+  if (req.path.startsWith("/api/")) return next(); // let API routes/404s handle it
+  res.sendFile(path.join(frontendDir, "index.html"));
+});
+
 // Global Error Handler
 app.use(errorHandler);
 
 // Start Server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });
