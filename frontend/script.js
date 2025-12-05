@@ -1,5 +1,5 @@
-// API Base URL
-const API_URL = "http://localhost:3000/api/movies";
+// API Base URL (relative so frontend works when served from the backend)
+const API_URL = "/api/movies";
 
 // DOM Elements
 const form = document.getElementById("movieForm");
